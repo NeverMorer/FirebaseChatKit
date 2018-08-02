@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1012647549956",
+    "firebase_url": "https://chatline-7859c.firebaseio.com",
+    "project_id": "chatline-7859c",
+    "storage_bucket": "chatline-7859c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012647549956:android:3e90db7f4abbfbb5",
+        "android_client_info": {
+          "package_name": "com.religion76.firebasechatkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012647549956-vu83ae91254vc2v493j1b9kr8a81n1l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA-x5q8CNpdgC_tr7ipe6LXW-Vc8IMTYg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
