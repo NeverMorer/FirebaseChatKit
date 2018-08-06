@@ -7,39 +7,24 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     tools:context="com.religion76.firebasechatkit.MainActivity">
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabSend"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="5dp"
-        android:src="@android:drawable/ic_menu_send"
-        android:tint="@android:color/white"
-        app:fabSize="mini" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnUserEntrance"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@id/fabSend"
-        android:layout_toStartOf="@id/fabSend">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        android:text="User" />
 
-        <EditText
-            android:id="@+id/etInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Input" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvMessages"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/fabSend"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="16dp" />
+    <Button
+        android:id="@+id/btnStaffEntrance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnUserEntrance"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:text="staff only" />
 
 </RelativeLayout>

@@ -11,7 +11,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d("Firebase", "initializeApp")
         FirebaseApp.initializeApp(this)
     }
 }
