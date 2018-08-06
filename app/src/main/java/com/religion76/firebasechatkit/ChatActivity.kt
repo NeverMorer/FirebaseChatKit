@@ -12,14 +12,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.religion76.firebasechatkit.adapter.ChatMessagesAdapter
 import com.religion76.firebasechatkit.data.ChatMessage
 import com.religion76.firebasechatkit.data.ChatSession
-import com.religion76.firebasechatkit.data.ChatUser
 import kotlinx.android.synthetic.main.activity_chat.*
-import java.util.*
 
 
 class ChatActivity : AppCompatActivity() {
 
     companion object {
+
+        val TAG = "Chaaaat"
 
         fun start(context: Context, chatSession: ChatSession? = null) {
             val intent = Intent(context, ChatActivity::class.java)
@@ -58,28 +58,25 @@ class ChatActivity : AppCompatActivity() {
                 val ref = FirebaseDatabase.getInstance().reference
 
                 if (session == null) {
-                    val user = ChatUser()
-                    val uuid = UUID.randomUUID().toString().substring(0, 6)
-                    user.userName = "Eddie$uuid"
-                    user.userId = "1994$uuid"
-
-                    val ses = ChatUtils.createChatSession(user)
+                    val ses = ChatUtils.createChatSession(ChatUtils.getFakeUser())
                     ses.isActive = true
-                    ref.child("session")
-                            .push()
-                            .setValue(ses)
-                            .addOnCompleteListener {
-
-                                session = ses
-                                refreshData(true)
-                                pushMessage()
-                            }
+                    ses.sessionId?.let { sessionId ->
+                        ref.child("session")
+                                .child(sessionId)
+                                .setValue(ses)
+                                .addOnCompleteListener {
+                                    Log.d(TAG, "create session completed")
+                                    session = ses
+                                    refreshData(true)
+                                    pushMessage()
+                                    etInput.setText("")
+                                }
+                    }
 
                 } else {
                     pushMessage()
+                    etInput.setText("")
                 }
-
-                etInput.setText("")
             }
         }
 
@@ -87,18 +84,21 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun pushMessage() {
+
+        val sessionId = session?.sessionId ?: return
         val message = ChatMessage()
         message.content = etInput.text.toString()
         message.time = System.currentTimeMillis()
-        message.sessionId = session?.sessionId
+        message.sessionId = sessionId
 
         FirebaseDatabase.getInstance()
                 .reference
                 .child("message")
+                .child(sessionId)
                 .push()
                 .setValue(message)
                 .addOnCompleteListener {
-
+                    Log.d(TAG, "push message completed")
                 }
     }
 
@@ -121,8 +121,7 @@ class ChatActivity : AppCompatActivity() {
             val query = FirebaseDatabase.getInstance()
                     .reference
                     .child("message")
-                    .orderByChild("sessionId")
-                    .equalTo(sessionId)
+                    .child(sessionId)
 
             return FirebaseRecyclerOptions
                     .Builder<ChatMessage>()

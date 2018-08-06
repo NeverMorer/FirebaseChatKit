@@ -2,4 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="Sign out" app:showAsAction="never" android:id="@+id/menu_sign_out"/>
+    <item android:title="Clean db" app:showAsAction="never" android:id="@+id/menu_clear_data"/>
 </menu>

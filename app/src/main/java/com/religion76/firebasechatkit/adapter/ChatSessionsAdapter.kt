@@ -21,6 +21,7 @@ class ChatSessionsAdapter(options: FirebaseRecyclerOptions<ChatSession>) : Fireb
     }
 
     override fun onBindViewHolder(holder: ChatSessionViewHolder, position: Int, model: ChatSession) {
+
         holder.itemView.tvUserName.text = model.fromUser?.userName
         holder.itemView.ivSessionState.visibility = if (model.isActive) View.VISIBLE else View.INVISIBLE
         holder.itemView.setOnClickListener {

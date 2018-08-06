@@ -21,4 +21,12 @@ object ChatUtils {
 
         return chatSession
     }
+
+    fun getFakeUser(): ChatUser {
+        val user = ChatUser()
+        val uuid = UUID.randomUUID().toString().substring(0, 6)
+        user.userName = "Eddie$uuid"
+        user.userId = "1994$uuid"
+        return user
+    }
 }

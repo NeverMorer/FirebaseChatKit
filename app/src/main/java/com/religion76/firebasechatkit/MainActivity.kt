@@ -5,11 +5,13 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -83,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         menu?.findItem(R.id.menu_sign_out)?.isVisible = FirebaseAuth.getInstance().currentUser != null
+        menu?.findItem(R.id.menu_clear_data)?.isVisible = FirebaseAuth.getInstance().currentUser != null
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -94,6 +97,11 @@ class MainActivity : AppCompatActivity() {
                         finish()
                         invalidateOptionsMenu()
                     }
+            return true
+        }else if (item?.itemId == R.id.menu_clear_data){
+            FirebaseDatabase.getInstance().reference.removeValue().addOnCompleteListener {
+                Log.d(ChatActivity.TAG, "remove session completed")
+            }
             return true
         }
         return super.onOptionsItemSelected(item)
