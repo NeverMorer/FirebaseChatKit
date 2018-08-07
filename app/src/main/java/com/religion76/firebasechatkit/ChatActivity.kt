@@ -59,6 +59,8 @@ class ChatActivity : AppCompatActivity() {
             return
         }
 
+        title = destUser.userName
+
         session = intent.getParcelableExtra("user_session")
 
         fabSend.setOnClickListener {
