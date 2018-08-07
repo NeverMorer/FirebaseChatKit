@@ -10,26 +10,20 @@ class ChatSession() : Parcelable {
 
     var sessionId: String? = null
 
-    //发送用户
-    var fromUser: ChatUser? = null
+    var userIdA: String? = null
 
-    //接受用户
-    var destUser: ChatUser? = null
-
-    var isActive: Boolean = false
+    var userIdB: String? = null
 
     constructor(parcel: Parcel) : this() {
         sessionId = parcel.readString()
-        fromUser = parcel.readParcelable(ChatUser::class.java.classLoader)
-        destUser = parcel.readParcelable(ChatUser::class.java.classLoader)
-        isActive = parcel.readByte() != 0.toByte()
+        userIdA = parcel.readString()
+        userIdB = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(sessionId)
-        parcel.writeParcelable(fromUser, flags)
-        parcel.writeParcelable(destUser, flags)
-        parcel.writeByte(if (isActive) 1 else 0)
+        parcel.writeString(userIdA)
+        parcel.writeString(userIdB)
     }
 
     override fun describeContents(): Int {
@@ -45,5 +39,6 @@ class ChatSession() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
 
 }

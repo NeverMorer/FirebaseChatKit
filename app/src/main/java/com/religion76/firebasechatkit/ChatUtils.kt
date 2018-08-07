@@ -8,17 +8,12 @@ import java.util.*
  * Created by SunChao on 2018/8/6.
  */
 object ChatUtils {
-    fun createChatSession(user: ChatUser): ChatSession {
-        val staffUser = ChatUser()
-        staffUser.userId = "10000"
-        staffUser.userName = "Admin"
-
+    fun createChatSession(userIdA: String, userIdB: String): ChatSession {
         val chatSession = ChatSession()
 
         chatSession.sessionId = UUID.randomUUID().toString()
-        chatSession.destUser = staffUser
-        chatSession.fromUser = user
-
+        chatSession.userIdA = userIdA
+        chatSession.userIdB = userIdB
         return chatSession
     }
 

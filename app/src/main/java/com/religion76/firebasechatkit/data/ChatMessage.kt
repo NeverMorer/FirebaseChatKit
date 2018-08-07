@@ -20,4 +20,6 @@ class ChatMessage {
     //发送时间
     var time: Long? = null
 
+    var fromUserId: String? = null
+
 }

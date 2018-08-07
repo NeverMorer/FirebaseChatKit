@@ -8,24 +8,41 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.religion76.firebasechatkit.ChatActivity
 import com.religion76.firebasechatkit.R
-import com.religion76.firebasechatkit.data.ChatSession
+import com.religion76.firebasechatkit.data.ChatUser
+import com.religion76.firebasechatkit.data.UserSession
 import kotlinx.android.synthetic.main.item_chat_session.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by SunChao on 2018/8/2.
  */
-class ChatSessionsAdapter(options: FirebaseRecyclerOptions<ChatSession>) : FirebaseRecyclerAdapter<ChatSession, ChatSessionsAdapter.ChatSessionViewHolder>(options) {
+class ChatSessionsAdapter(options: FirebaseRecyclerOptions<UserSession>) : FirebaseRecyclerAdapter<UserSession, ChatSessionsAdapter.ChatSessionViewHolder>(options) {
+
+    val sdf by lazy {
+        SimpleDateFormat("yyyy-MM-dd", Locale.CHINA)
+    }
+
+    var myself: ChatUser? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatSessionViewHolder {
         return ChatSessionViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_chat_session, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ChatSessionViewHolder, position: Int, model: ChatSession) {
+    override fun onBindViewHolder(holder: ChatSessionViewHolder, position: Int, model: UserSession) {
 
-        holder.itemView.tvUserName.text = model.fromUser?.userName
+        val destUser =  model.destUser
+
+        holder.itemView.tvUserName.text = destUser?.userName
+        holder.itemView.tvLastMsg.text = model.lastMessage
         holder.itemView.ivSessionState.visibility = if (model.isActive) View.VISIBLE else View.INVISIBLE
+        model.lastTime?.let {
+            holder.itemView.tvLastTime.text = sdf.format(it)
+        }
         holder.itemView.setOnClickListener {
-            ChatActivity.start(holder.itemView.context, model)
+            if (myself != null && destUser != null) {
+                ChatActivity.start(holder.itemView.context, myself!!, destUser, model)
+            }
         }
     }
 

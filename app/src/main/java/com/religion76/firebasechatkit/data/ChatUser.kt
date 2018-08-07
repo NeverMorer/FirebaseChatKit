@@ -9,15 +9,18 @@ import android.os.Parcelable
 class ChatUser() : Parcelable {
     var userId: String? = null
     var userName:String ?= null
+    var hostAppUserId:String ?= null
 
     constructor(parcel: Parcel) : this() {
         userId = parcel.readString()
         userName = parcel.readString()
+        hostAppUserId = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(userId)
         parcel.writeString(userName)
+        parcel.writeString(hostAppUserId)
     }
 
     override fun describeContents(): Int {
@@ -33,4 +36,6 @@ class ChatUser() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+
 }
