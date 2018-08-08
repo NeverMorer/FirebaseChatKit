@@ -28,12 +28,13 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
-    //third part dependencies
+    //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.1'
-    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.firebaseui:firebase-ui-database:4.1.0'
-    // FirebaseUI for Firebase Auth
     implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
+
+    implementation 'com.sw926.imagefileselector:library:1.0.10'
 
     testImplementation 'junit:junit:4.12'
 

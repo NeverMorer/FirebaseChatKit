@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.religion76.firebasechatkit.ChatActivity
+import com.religion76.firebasechatkit.ui.ChatActivity
 import com.religion76.firebasechatkit.R
 import com.religion76.firebasechatkit.data.ChatUser
 import com.religion76.firebasechatkit.data.UserSession

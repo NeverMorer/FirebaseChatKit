@@ -11,6 +11,9 @@ class ChatMessage {
     //消息内容
     var content: String? = null
 
+    //图片地址
+    var imageUrl: String? = null
+
     //消息类型
     var type: String? = null
 

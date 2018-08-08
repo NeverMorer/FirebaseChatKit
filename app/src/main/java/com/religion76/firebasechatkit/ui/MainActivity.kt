@@ -1,4 +1,4 @@
-package com.religion76.firebasechatkit
+package com.religion76.firebasechatkit.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -12,6 +12,8 @@ import android.view.View
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.religion76.firebasechatkit.ChatUtils
+import com.religion76.firebasechatkit.R
 import com.religion76.firebasechatkit.data.ChatUser
 import kotlinx.android.synthetic.main.activity_main.*
 

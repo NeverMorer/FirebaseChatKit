@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="message_bubble_corners_radius">15dp</dimen>
+    <dimen name="shape_chat_add_radius">4dp</dimen>
 </resources>

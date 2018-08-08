@@ -1,4 +1,4 @@
-package com.religion76.firebasechatkit
+package com.religion76.firebasechatkit.ui
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
+import com.religion76.firebasechatkit.R
 import com.religion76.firebasechatkit.adapter.ChatSessionsAdapter
 import com.religion76.firebasechatkit.data.ChatUser
 import com.religion76.firebasechatkit.data.UserSession
