@@ -88,12 +88,12 @@ class ChatManager(private val myself: ChatUser, private val destUser: ChatUser) 
     }
 
     fun pushMessage(sessionId: String, messageText: String) {
-
         val message = ChatMessage()
         message.content = messageText
         message.time = System.currentTimeMillis()
         message.sessionId = sessionId
         message.fromUserId = myself.userId
+        message.type = "text"
 
         pushMessage(sessionId, message)
     }
@@ -104,6 +104,8 @@ class ChatManager(private val myself: ChatUser, private val destUser: ChatUser) 
         message.time = System.currentTimeMillis()
         message.sessionId = sessionId
         message.fromUserId = myself.userId
+        message.type = "photo"
+        message.imageUrl = imageUrl
 
         pushMessage(sessionId, message)
     }

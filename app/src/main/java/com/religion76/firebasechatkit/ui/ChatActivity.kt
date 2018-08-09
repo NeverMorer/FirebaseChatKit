@@ -3,13 +3,16 @@ package com.religion76.firebasechatkit.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.religion76.firebasechatkit.ChatManager
 import com.religion76.firebasechatkit.R
+import com.religion76.firebasechatkit.StorageManager
 import com.religion76.firebasechatkit.adapter.ChatMessagesAdapter
 import com.religion76.firebasechatkit.data.ChatMessage
 import com.religion76.firebasechatkit.data.ChatUser
@@ -79,12 +82,23 @@ class ChatActivity : ImageSelectorActivity() {
 
         ivAddPhoto.setOnClickListener {
             selectImage { path ->
-                Log.d(TAG, "file_path:$path")
+                pbLoading.visibility = View.VISIBLE
+                val sessionId = session?.sessionId
+                if (path != null && sessionId != null) {
+                    StorageManager.uploadLocalImage(sessionId, path) { imgUri ->
+                        pbLoading.visibility = View.GONE
+                        if (imgUri != null) {
+                            Log.d(TAG, "upload img succeed:$imgUri")
+                            chatManager.pushMessageWithPic(sessionId, imgUri.toString())
+                        } else {
+                            Snackbar.make(containerRoot, "upload image failed...", Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
         }
 
         refreshData(chatManager.getMyself(), chatManager.getDestUser())
-
     }
 
     private fun refreshData(myself: ChatUser, destUser: ChatUser, needStartListening: Boolean = false) {

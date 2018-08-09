@@ -7,6 +7,7 @@ import com.google.firebase.FirebaseApp
 /**
  * Created by SunChao on 2018/8/2.
  */
+
 class App : Application() {
 
     override fun onCreate() {

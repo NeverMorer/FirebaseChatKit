@@ -21,6 +21,13 @@
             android:maxWidth="200dp"
             android:layout_gravity="end"/>
 
+        <ImageView
+            android:id="@+id/ivDialogPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:visibility="gone"/>
+
         <TextView
             android:id="@+id/tvDateDialogSender"
             android:layout_width="wrap_content"

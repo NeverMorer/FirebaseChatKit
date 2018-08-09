@@ -3,6 +3,7 @@
     package="com.religion76.firebasechatkit">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -19,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.ChatSessionsActivity" />
-        <activity android:name=".ui.ChatActivity"></activity>
+        <activity android:name=".ui.ChatActivity" />
+        <activity android:name=".ui.SinglePhotoViewActivity" android:theme="@style/NoActionBarAppTheme"/>
     </application>
 
 </manifest>
